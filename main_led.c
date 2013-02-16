@@ -8,9 +8,9 @@ EMAIL : maiii.themd@gmail.com
 COMPILER : gcc version 4.6.3 (Debian 4.6.3-12+rpi1)
 SINCE : 15/02/2013
 
-Copyright www.pishared.com
+Copyright MaIII Themd
+WEB : http://www.pishared.com/2013/02/led-raspberry-pi.html
 FB : https://www.facebook.com/pages/Pi-Shared/350972691684305
-
 */
 
 
