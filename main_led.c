@@ -1,3 +1,19 @@
+/*
+NOTE
+
+HARDWARE : Raspberry PI
+IO_LIB : BCM2835 (http://www.open.com.au/mikem/bcm2835/)
+AUTHER : MaIII Themd
+EMAIL : maiii.themd@gmail.com
+COMPILER : gcc version 4.6.3 (Debian 4.6.3-12+rpi1)
+SINCE : 15/02/2013
+
+Copyright www.pishared.com
+
+
+*/
+
+
 
 #include <bcm2835.h>
 #include <stdint.h>
@@ -6,6 +22,9 @@
 #define _NO_OF_LED_ 10
 RPiGPIOPin LED[_NO_OF_LED_];
 
+/*
+LED brigthness pattern
+*/
 uint8_t LED_BRIGTH[11][10] = {
  
     {0,0,0,0,0,0,0,0,0,0},
@@ -21,8 +40,11 @@ uint8_t LED_BRIGTH[11][10] = {
     {1,1,1,1,1,1,1,1,1,1}
 };
 
-//LED0 - LED9,DELAY IN Us
+
 #define _NO_OF_PATTERN_ 73
+/*
+IN ROW : LED0,LED1,LED2,LED3...LED9,DELAY_IN_uSec
+*/
 int32_t LED_PATTERN[_NO_OF_PATTERN_][11] = 
     {
         {9,0,0,0,0,0,0,0,0,0,50000},
@@ -106,8 +128,8 @@ int32_t LED_PATTERN[_NO_OF_PATTERN_][11] =
 
 uint8_t LED_MAP[_NO_OF_LED_];
 
-//us 1000000 = 1 s
-int led()
+
+int led_play()
 {
     int pt = 0;
     int no_led = 0;
@@ -143,7 +165,6 @@ int led()
 int main()
 {
     uint8_t i = 0;
-    pthread_t thread_led_output;
 
     LED[0] = RPI_GPIO_P1_11;
     LED[1] = RPI_GPIO_P1_15;
@@ -169,23 +190,12 @@ int main()
         LED_MAP[i] = 0;
     }
     
-    led();
+    led_play();
 
 
     return 0;
 }
 
-/*LCD.lcd_16x2.rs = RPI_GPIO_P1_11;
-    LCD.lcd_16x2.en = RPI_GPIO_P1_15;
-    if(LCD.lcd_16x2.data_mode == _LCD_TYPE_16x2_MODE_8_BIT)
-    {
-        LCD.lcd_16x2.data[0] = RPI_GPIO_P1_16;
-        LCD.lcd_16x2.data[1] = RPI_GPIO_P1_18;
-        LCD.lcd_16x2.data[2] = RPI_GPIO_P1_19;
-        LCD.lcd_16x2.data[3] = RPI_GPIO_P1_21;
-    }
-    LCD.lcd_16x2.data[4] = RPI_GPIO_P1_22;
-    LCD.lcd_16x2.data[5] = RPI_GPIO_P1_23;
-    LCD.lcd_16x2.data[6] = RPI_GPIO_P1_24;
-    LCD.lcd_16x2.data[7] = RPI_GPIO_P1_26;
-    */
+
+
+//eof
