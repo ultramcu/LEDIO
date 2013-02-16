@@ -9,7 +9,7 @@ COMPILER : gcc version 4.6.3 (Debian 4.6.3-12+rpi1)
 SINCE : 15/02/2013
 
 Copyright www.pishared.com
-
+FB : https://www.facebook.com/pages/Pi-Shared/350972691684305
 
 */
 
@@ -126,14 +126,13 @@ int32_t LED_PATTERN[_NO_OF_PATTERN_][11] =
     };
 
 
-uint8_t LED_MAP[_NO_OF_LED_];
-
 
 int led_play()
 {
     int pt = 0;
     int no_led = 0;
     int blink_pattern = 0;
+    int32_t brigth = 0;
 
 
     while(1)
@@ -144,7 +143,14 @@ int led_play()
             {
                 for(no_led = 0; no_led < _NO_OF_LED_; no_led++)
                 {
-                    if(LED_BRIGTH[LED_PATTERN[pt][no_led]][blink_pattern] == 1)
+                    brigth = LED_PATTERN[pt][no_led];
+
+                    if(brigth > 10)
+                    {
+                        brigth = 10;
+                    }
+
+                    if(LED_BRIGTH[brigth][blink_pattern] == 1)
                     {
                         bcm2835_gpio_write(LED[no_led], LOW);
                     }
@@ -187,7 +193,6 @@ int main()
     {
         bcm2835_gpio_fsel(LED[i], BCM2835_GPIO_FSEL_OUTP);
         bcm2835_gpio_write(LED[i], HIGH);
-        LED_MAP[i] = 0;
     }
     
     led_play();
