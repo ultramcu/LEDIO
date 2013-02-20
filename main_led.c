@@ -45,7 +45,7 @@ uint8_t LED_BRIGTH[11][10] = {
 /*
 IN ROW : LED0,LED1,LED2,LED3...LED9,DELAY_IN_uSec
 */
-int32_t LED_PATTERN[_NO_OF_PATTERN_][11] = 
+uint32_t LED_PATTERN[_NO_OF_PATTERN_][11] = 
     {
         {9,0,0,0,0,0,0,0,0,0,50000},
         {8,9,0,0,0,0,0,0,0,0,50000},
